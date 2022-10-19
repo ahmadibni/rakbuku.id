@@ -24,11 +24,11 @@ header #header-title h1{
 
 header #search-section{
     width: 20%;
-    margin-right: 5rem;
+    margin-right: 1rem;
 }
 
 header #search-section input{
-    width: 80%;
+    width: 70%;
     padding: 0.6rem 1rem;
 }
 
@@ -37,9 +37,9 @@ header #search-section input::placeholder{
 }
 
 header #searchSubmit{
+    width: 20%;
     background-color: rgb(87, 119, 141);
     color: white;
-    width: 15%;
     padding: 0.6rem;
     cursor: pointer;
     border: 1px solid rgb(255, 255, 255);
@@ -144,6 +144,7 @@ main{
     border: none;
     padding: 0.6rem;
     cursor: pointer;
+    margin: 0 0.7rem;
     /* box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.3); */
 }
 

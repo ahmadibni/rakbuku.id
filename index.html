@@ -27,7 +27,7 @@
         <section class="book-shelf">
             <h1>Belum Dibaca</h1>
             <div id="uncompletedBookshelfList" class="book-list">
-                <article class="book-item">
+                <!-- <article class="book-item">
                     <h3>Judul</h3>
                     <p>Penulis : penulis</p>
                     <p>Tahun : tahun</p>
@@ -36,42 +36,12 @@
                         <button class="green">Udah Dibaca</button>
                         <button class="red">Hapus Buku</button>
                     </div>
-                </article>
-                <article class="book-item">
-                    <h3>Judul</h3>
-                    <p>Penulis : penulis</p>
-                    <p>Tahun : tahun</p>
-
-                    <div class="action">
-                        <button class="green">Udah Dibaca</button>
-                        <button class="red">Hapus Buku</button>
-                    </div>
-                </article>
-                <article class="book-item">
-                    <h3>Judul</h3>
-                    <p>Penulis : penulis</p>
-                    <p>Tahun : tahun</p>
-
-                    <div class="action">
-                        <button class="green">Udah Dibaca</button>
-                        <button class="red">Hapus Buku</button>
-                    </div>
-                </article>
-                <article class="book-item">
-                    <h3>Judul</h3>
-                    <p>Penulis : penulis</p>
-                    <p>Tahun : tahun</p>
-
-                    <div class="action">
-                        <button class="green">Udah Dibaca</button>
-                        <button class="red">Hapus Buku</button>
-                    </div>
-                </article>
+                </article> -->
             </div>
         </section>
         <section class="form-container">
             <h1>Taruh Ke Rak Buku</h1>
-            <form>
+            <form id="bookForm">
                 <div class="input">
                     <label id="label-judul" for="input-judul">Judul</label>
                     <input id="input-judul" type="text" placeholder="Harry Potter" required>
@@ -82,20 +52,20 @@
                 </div>
                 <div class="input">
                     <label id="label-tahun" for="input-tahun">Tahun</label>
-                    <input id="input-tahun" type="text" placeholder="2003" required>
+                    <input id="input-tahun" type="number" placeholder="2003" required>
                 </div>
                 <div class="input">
                     <label id="label-isCompleted" for="check-ifCcompleted">Udah Dibaca ?</label>
                     <input type="checkbox" id="check-ifCompleted">
                 </div>
-                <button id="bookSubmit" type="submit">Taruh</button>
+                <button type="submit" id="bookSubmit">Taruh</button>
             </form>
         </section>
         
         <section class="book-shelf" id="completed">
             <h1>Udah dibaca</h1>
-            <div id="uncompletedBookshelfList" class="book-list">
-                <article class="book-item">
+            <div id="completedBookshelfList" class="book-list">
+                <!-- <article class="book-item">
                     <h3>Judul</h3>
                     <p>Penulis : penulis</p>
                     <p>Tahun : tahun</p>
@@ -104,17 +74,7 @@
                         <button class="green">Belum Dibaca</button>
                         <button class="red">Hapus Buku</button>
                     </div>
-                </article>
-                <article class="book-item">
-                    <h3>Judul</h3>
-                    <p>Penulis : penulis</p>
-                    <p>Tahun : tahun</p>
-
-                    <div class="action">
-                        <button class="green">Belum Dibaca</button>
-                        <button class="red">Hapus Buku</button>
-                    </div>
-                </article>
+                </article> -->
             </div>
         </section>
     </main>
