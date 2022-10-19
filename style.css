@@ -2,15 +2,168 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 header{
+    display: flex;
+    font-family: 'Josefin Sans', sans-serif;
     padding: 2rem;
     color: white;
     background-color: rgb(255, 94, 0);
+    justify-content: space-between;
 }
 
-header h1{
+header #header-title{
+    width: 20%;
     margin-left: 5rem;
+}
+
+header #header-title h1{
+    font-size: 2.5rem;
+}
+
+header #search-section{
+    width: 20%;
+    margin-right: 5rem;
+}
+
+header #search-section input{
+    width: 80%;
+    padding: 0.6rem 1rem;
+}
+
+header #search-section input::placeholder{
+    font-size: 1rem;
+}
+
+header #searchSubmit{
+    background-color: rgb(87, 119, 141);
+    color: white;
+    width: 15%;
+    padding: 0.6rem;
+    cursor: pointer;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+
+main{
+    margin: 5rem auto;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.form-container{
+    color: white;
+    background-color: rgb(255, 136, 67);
+    width: 40%;
+    align-self: flex-start;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.5);
+}
+
+.form-container h1{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.form-container form{
+    width: 70%;
+    margin: 2rem auto;
+}
+
+.form-container label{
+    display: block;
+    font-size: 1.2rem;
+}
+
+
+#input-judul, #input-penulis, #input-tahun{
+    margin: 0.5rem 0;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: none;
+}
+
+.form-container input::placeholder{
+    font-size: 1rem;
+}
+
+#label-isCompleted{
+    display: inline;
+}
+
+#check-ifCompleted{
+    display: inline;
+    border: none;
+    accent-color: rgb(255, 255, 255);
+}
+
+#bookSubmit{
+    background-color: #7FB77E;
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+}
+
+#bookSubmit:hover{
+    background-color: #89c788;
+    transition-duration: 300ms;
+}
+
+.book-shelf{
+    color: white;
+    box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.5);
+    background-color: rgb(255, 136, 67);
+    width: 25%;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    align-self: flex-start;
+}
+
+
+.book-shelf .book-list .book-item{
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+.book-shelf .green{
+    background-color: #7FB77E;
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    cursor: pointer;
+    /* box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.3); */
+}
+
+.book-shelf .green:hover{
+    background-color: #90d38f;
+    color: black;
+    transition-duration: 300ms;
+}
+
+.book-shelf .red{
+    background-color: #EC7272;
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    cursor: pointer;
+    /* box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.3); */
+}
+
+.book-shelf .red:hover{
+    background-color: #f09090;
+    color: black;
+    transition-duration: 300ms;
 }
