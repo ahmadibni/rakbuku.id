@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+header{
+    padding: 2rem;
+    color: white;
+    background-color: rgb(255, 94, 0);
+}
+
+header h1{
+    margin-left: 5rem;
+}
