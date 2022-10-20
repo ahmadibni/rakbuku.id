@@ -169,7 +169,7 @@ main{
     transition-duration: 300ms;
 }
 
-.pop-up{
+.pop-up-red{
     text-align: center;
     position: fixed;
     left: 50%;
@@ -181,10 +181,24 @@ main{
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.3);
     border-radius: 20px;
+
+}
+.pop-up-green{
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 0rem;
+    width: 30%;
+    height: 100px;
+    background-color: #7FB77E;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.3);
+    border-radius: 20px;
 }
 
 .hilang{
-    transform: translate(-50%,-105px);
+    transform: translate(-50%,-200px);
     transition-duration: 200ms;
 }
 
@@ -193,6 +207,7 @@ main{
     transition-duration: 200ms;
 }
 
-.pop-up h1{
+.pop-up-red h1, .pop-up-green h1{
     line-height: 100px;
+    font-size: 1.2rem;
 }

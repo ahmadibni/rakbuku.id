@@ -102,12 +102,14 @@ let templateRak = element => {
         greenButton.textContent = "Belum Dibaca";
         greenButton.addEventListener('click', ()=>{
             moveToUncompleted(element.id);
+            munculBookMoved();
         });
     }
     else{
         greenButton.textContent = "Udah Dibaca";
         greenButton.addEventListener('click', ()=>{
             moveToCompleted(element.id);
+            munculBookMoved();
         });
     }
     redButton = document.createElement('button');
@@ -115,6 +117,7 @@ let templateRak = element => {
     redButton.textContent = 'Hapus Buku';
     redButton.addEventListener('click', ()=>{
         deleteBook(element.id);
+        munculBookDeleted();
     });
 
     buttonContainer = document.createElement('div');
@@ -146,28 +149,57 @@ let render = ()=>{
     }
 }
 
-const popUp = document.querySelector(".pop-up");
-const munculPopUp = ()=>{
-    popUp.classList.remove('hilang');
-    popUp.classList.add('muncul');
+const notFound = document.querySelector("#notFound");
+const munculNotFound = ()=>{
+    notFound.classList.remove('hilang');
+    notFound.classList.add('muncul');
     setTimeout(()=>{
-        popUp.classList.add('hilang');
-        popUp.classList.remove('muncul');
+        notFound.classList.add('hilang');
+        notFound.classList.remove('muncul');
     }, 2000);
-
 }
 
+const bookAdded = document.querySelector("#bookAdded");
+const munculBookAdded = ()=>{
+    bookAdded.classList.remove('hilang');
+    bookAdded.classList.add('muncul');
+    setTimeout(()=>{
+        bookAdded.classList.add('hilang');
+        bookAdded.classList.remove('muncul');
+    }, 2000);
+}
+
+const bookMoved = document.querySelector("#bookMoved");
+const munculBookMoved = ()=>{
+    bookMoved.classList.remove('hilang');
+    bookMoved.classList.add('muncul');
+    setTimeout(()=>{
+        bookMoved.classList.add('hilang');
+        bookMoved.classList.remove('muncul');
+    }, 2000);
+}
+
+const bookDeleted = document.querySelector("#bookDeleted");
+const munculBookDeleted = ()=>{
+    bookDeleted.classList.remove('hilang');
+    bookDeleted.classList.add('muncul');
+    setTimeout(()=>{
+        bookDeleted.classList.add('hilang');
+        bookDeleted.classList.remove('muncul');
+    }, 2000);
+}
 
 const searchBookTitle = document.querySelector('#searchBookTitle');
 let cari = ()=>{  
     uncompletedBookshelf = document.querySelector("#uncompletedBookshelfList");
     completedBookshelf = document.querySelector("#completedBookshelfList");
 
-    uncompletedBookshelf.innerHTML = '';
-    completedBookshelf.innerHTML = '';
-
-    for (const book of books) {
-        if (book.title.trim().toLowerCase() == searchBookTitle.value.trim().toLowerCase()) {
+    let found = books.some(e => e.title.trim().toLowerCase() == searchBookTitle.value.trim().toLowerCase());
+    let filteredBooks = books.filter(e => e.title.trim().toLowerCase() == searchBookTitle.value.trim().toLowerCase())
+    if (found) {
+        uncompletedBookshelf.innerHTML = '';
+        completedBookshelf.innerHTML = '';
+        for (const book of filteredBooks) {
             if(book.isComplete){
                 completedBookshelf.append(templateRak(book));
             }
@@ -176,8 +208,8 @@ let cari = ()=>{
             }
         }
     }
-    if(books.some( book => book.title !== searchBookTitle.value)){
-        munculPopUp();
+    else{
+        munculNotFound();
     }
 }
 
@@ -187,6 +219,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     bookSubmit.addEventListener('submit', function(e){
         e.preventDefault();
         addBook();
+        munculBookAdded();
     });
     const searchBook = document.querySelector("#searchBook");
     searchBook.addEventListener('submit', function(e){
