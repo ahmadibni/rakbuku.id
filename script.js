@@ -17,8 +17,8 @@ let inputJudul,
     bookSubmit;
 
 
-const generateID = ()=>{
-    return +new Date;
+let generateID = ()=>{
+    return +new Date();
 }
 
 const generateBook = (id, title, author, year, isComplete)=>{
@@ -31,7 +31,26 @@ const generateBook = (id, title, author, year, isComplete)=>{
     }
 }
 
-const addBook = ()=>{
+let findId = bookId => {
+    for (const book of books) {
+        if(book.id == bookId){
+            return book;
+        }
+    }
+    return null;
+}
+
+let findIndexBook = bookId => {
+    for (const index in books) {            
+        if(books[index].id === bookId){
+            return index;
+        }
+    }
+    return -1;
+}
+
+
+let addBook = ()=>{
     inputJudul = document.querySelector("#input-judul").value;
     inputPenulis = document.querySelector("#input-penulis").value;
     inputTahun = parseInt(document.querySelector("#input-tahun").value);
@@ -41,25 +60,9 @@ const addBook = ()=>{
     render();
 }
 
-const findId = id => {
-    for (const book of books) {
-        if(book.id == id){
-            return book;
-        }
-        return null;
-    }
-}
 
-const findIndexBook = bookId => {
-    for (const index of books) {            
-        if(books[index].id === bookId){
-            return index;
-        }
-    }
-    return -1;
-}
 
-const moveToCompleted = id => {
+let moveToCompleted = id => {
     const bookTarget = findId(id);
     if(bookTarget == null) return;
 
@@ -67,7 +70,7 @@ const moveToCompleted = id => {
     render();
 }
 
-const moveToUncompleted = id => {
+let moveToUncompleted = id => {
     const bookTarget = findId(id);
     if(bookTarget == null) return;
 
@@ -75,7 +78,7 @@ const moveToUncompleted = id => {
     render();
 }
 
-const deleteBook = id => {
+let deleteBook = id => {
     const bookTarget = findIndexBook(id);
 
     if (bookTarget == -1) return;
@@ -83,7 +86,7 @@ const deleteBook = id => {
     render();
 }
 
-const templateRak = element => {
+let templateRak = element => {
     bookTitle = document.createElement('h3');
     bookTitle.textContent = element.title;
     
@@ -126,23 +129,7 @@ const templateRak = element => {
 }
 
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    
-    bookSubmit = document.querySelector("#bookForm");
-    bookSubmit.addEventListener('submit', function(event){
-        event.preventDefault();
-        
-        addBook();
-    });
-});
-
-
-
-
-
-
-
-const render = ()=>{
+let render = ()=>{
     uncompletedBookshelf = document.querySelector("#uncompletedBookshelfList");
     completedBookshelf = document.querySelector("#completedBookshelfList");
 
@@ -158,3 +145,53 @@ const render = ()=>{
         }
     }
 }
+const searchBookTitle = document.querySelector('#searchBookTitle');
+let cari = ()=>{  
+    uncompletedBookshelf = document.querySelector("#uncompletedBookshelfList");
+    completedBookshelf = document.querySelector("#completedBookshelfList");
+
+    uncompletedBookshelf.innerHTML = '';
+    completedBookshelf.innerHTML = '';
+    // let filteredBook = [];
+    for (const book of books) {
+        if (book.title == searchBookTitle.value) {
+            // templateRak(book).style.display = "none";
+            console.log(templateRak(book));
+            if(book.isComplete){
+                completedBookshelf.append(templateRak(book));
+            }
+            else{
+                uncompletedBookshelf.append(templateRak(book));
+            }
+        }
+
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+    bookSubmit = document.querySelector("#bookForm");
+    bookSubmit.addEventListener('submit', function(event){
+        event.preventDefault();
+        addBook();
+    });
+    const searchBook = document.querySelector("#searchBook");
+    searchBook.addEventListener('submit', function(event){
+        event.preventDefault();
+        cari();
+    });
+    searchBookTitle.addEventListener('input', e=>{
+        if(e.target.value == ''){
+            for (const book of books) {
+                if(book.isComplete){
+                    completedBookshelf.append(templateRak(book));
+                }
+                else{
+                    uncompletedBookshelf.append(templateRak(book));
+                }
+            }
+        }
+    });
+});
+    
