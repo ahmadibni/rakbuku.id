@@ -1,4 +1,5 @@
 const books = [];
+const KEY = 'Books'
 let inputJudul, 
     inputTahun,
     inputPenulis,
@@ -14,7 +15,8 @@ let inputJudul,
     bookYear,
     container,
     buttonContainer,
-    bookSubmit;
+    bookSubmit,
+    savedBooks;
 
 
 let generateID = ()=>{
@@ -58,6 +60,7 @@ let addBook = ()=>{
     bookId = generateID();
     books.push(generateBook(bookId, inputJudul, inputPenulis, inputTahun, isComplete));
     render();
+    saveBooks();
 }
 
 
@@ -68,6 +71,7 @@ let moveToCompleted = id => {
 
     bookTarget.isComplete = true;
     render();
+    saveBooks();
 }
 
 let moveToUncompleted = id => {
@@ -76,6 +80,7 @@ let moveToUncompleted = id => {
 
     bookTarget.isComplete = false;
     render();
+    saveBooks();
 }
 
 let deleteBook = id => {
@@ -84,6 +89,7 @@ let deleteBook = id => {
     if (bookTarget == -1) return;
     books.splice(bookTarget, 1);
     render();
+    saveBooks();
 }
 
 let templateRak = element => {
@@ -213,7 +219,36 @@ let cari = ()=>{
     }
 }
 
+let storageExist = ()=>{
+    if (typeof (Storage) === undefined) {
+        return false;
+      }
+      return true;
+}
+
+const saveBooks = ()=>{
+    if(storageExist()){
+        localStorage.setItem(KEY, JSON.stringify(books));
+    }
+}
+
+const loadBooks = ()=>{
+    const serializedData = localStorage.getItem(KEY);
+    let savedBooks = JSON.parse(serializedData);
+    
+    if (savedBooks !== null) {
+        for (const book of savedBooks) {
+        books.push(book);
+        }
+    }
+    render();
+}
+
 document.addEventListener("DOMContentLoaded", ()=>{
+
+    if (storageExist()) {
+        loadBooks();
+    }
 
     bookSubmit = document.querySelector("#bookForm");
     bookSubmit.addEventListener('submit', function(e){
