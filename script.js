@@ -145,6 +145,19 @@ let render = ()=>{
         }
     }
 }
+
+const popUp = document.querySelector(".pop-up");
+const munculPopUp = ()=>{
+    popUp.classList.remove('hilang');
+    popUp.classList.add('muncul');
+    setTimeout(()=>{
+        popUp.classList.add('hilang');
+        popUp.classList.remove('muncul');
+    }, 2000);
+
+}
+
+
 const searchBookTitle = document.querySelector('#searchBookTitle');
 let cari = ()=>{  
     uncompletedBookshelf = document.querySelector("#uncompletedBookshelfList");
@@ -152,11 +165,9 @@ let cari = ()=>{
 
     uncompletedBookshelf.innerHTML = '';
     completedBookshelf.innerHTML = '';
-    // let filteredBook = [];
+
     for (const book of books) {
-        if (book.title == searchBookTitle.value) {
-            // templateRak(book).style.display = "none";
-            console.log(templateRak(book));
+        if (book.title.trim().toLowerCase() == searchBookTitle.value.trim().toLowerCase()) {
             if(book.isComplete){
                 completedBookshelf.append(templateRak(book));
             }
@@ -164,33 +175,28 @@ let cari = ()=>{
                 uncompletedBookshelf.append(templateRak(book));
             }
         }
-
     }
-
+    if(books.some( book => book.title !== searchBookTitle.value)){
+        munculPopUp();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
     bookSubmit = document.querySelector("#bookForm");
-    bookSubmit.addEventListener('submit', function(event){
-        event.preventDefault();
+    bookSubmit.addEventListener('submit', function(e){
+        e.preventDefault();
         addBook();
     });
     const searchBook = document.querySelector("#searchBook");
-    searchBook.addEventListener('submit', function(event){
-        event.preventDefault();
+    searchBook.addEventListener('submit', function(e){
+        e.preventDefault();
+        e.stopPropagation();
         cari();
     });
     searchBookTitle.addEventListener('input', e=>{
         if(e.target.value == ''){
-            for (const book of books) {
-                if(book.isComplete){
-                    completedBookshelf.append(templateRak(book));
-                }
-                else{
-                    uncompletedBookshelf.append(templateRak(book));
-                }
-            }
+            render();
         }
     });
 });

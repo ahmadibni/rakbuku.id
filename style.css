@@ -168,3 +168,31 @@ main{
     color: black;
     transition-duration: 300ms;
 }
+
+.pop-up{
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 0rem;
+    width: 30%;
+    height: 100px;
+    background-color: #EC7272;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 5px 0 rgb(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.hilang{
+    transform: translate(-50%,-105px);
+    transition-duration: 200ms;
+}
+
+.muncul{
+    transform: translate(-50%,50%);
+    transition-duration: 200ms;
+}
+
+.pop-up h1{
+    line-height: 100px;
+}
